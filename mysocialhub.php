@@ -29,7 +29,7 @@ function fb_sdk(){
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1<?php echo $opts; ?>";
         fjs.parentNode.insertBefore(js, fjs);
-    }(docuemnt, 'script', facebook-jssdk'));
+    }(document, 'script', facebook-jssdk'));
     </script>
 }
 <?php
