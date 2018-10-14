@@ -11,3 +11,20 @@ License: GPL2
 */
 
 //code starts here
+
+//function to add the Facebook SDK to WordPress. Function is from developers.facebook.com and
+// inserted using WP actions
+?>
+function fb_sdk(){
+    <div id="fb-root"></div>
+    <script>(function (d, s, id){
+        var js, fjs = d.getElementsByTagNames(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(docuemnt, 'script', facebook-jssdk'));
+    </script>
+}
+<?php
+add_action('wp_head', 'fb_sdk');
