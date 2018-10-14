@@ -16,12 +16,18 @@ License: GPL2
 // inserted using WP actions
 ?>
 function fb_sdk(){
+
+    $version = '2.9';
+    $appid='';
+
+    if ($version) $opts = '&version=v' . $version;
+    if ($appid) $opts .= 'appId=' . $appid;
     <div id="fb-root"></div>
     <script>(function (d, s, id){
         var js, fjs = d.getElementsByTagNames(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1<?php echo $opts; ?>";
         fjs.parentNode.insertBefore(js, fjs);
     }(docuemnt, 'script', facebook-jssdk'));
     </script>
