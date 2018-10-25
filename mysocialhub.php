@@ -4,7 +4,7 @@
 Plugin Name: My Social Hub
 Plugin URI: http://dawnp.sgedu.site
 Description: A plugin that pushes posts to Facebook, Instagram and Twitter
-Version: 1.0.0
+Version: 1.0.1
 Author: Dawn Passerini
 Author URI: http://dawnp.sgedu.site
 License: GPL2
@@ -12,8 +12,10 @@ License: GPL2
 
 //code starts here
 
-//function to add the Facebook SDK to WordPress. Function is from developers.facebook.com and
-// inserted using WP actions
+//checks if plugin is called directly and exits. Helps with hacking
+
+
+//function to add the Facebook SDK to WordPress. Function is from developers.facebook.com
 ?>
 function fb_sdk(){
 
