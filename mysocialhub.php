@@ -10,19 +10,18 @@ Author URI: http://dawnp.sgedu.site
 License: GPL2
 */
 
-//code starts here
-
 //checks if plugin is called directly and exits. Help deter hacking
-
 if ( ! defined( 'ABSPATH' ) ) {
 
     exit;
 
 }
 
-//My Social Hub Plugin options found under the settings menu in the admin panel
+//My Social Hub Plugin code
 
-    // display My Social Hub settings page
+    //Start of code that Admins will add social media account information
+
+        // display My Social Hub settings page under the WP Settings menu in admin area
         function mysocialhub_display_settings_page() {
 
             // checks if current user in WP is allowed to make changes
@@ -47,7 +46,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
 
         //Adds to the settings menu
+        function mysocialhub_add_sublevel_menu() {
             add_submenu_page(
+                //options that are required for WP function
                 'options-general.php',
                 'MySocialHub Settings',
                 'MySocialHub',
@@ -55,6 +56,5 @@ if ( ! defined( 'ABSPATH' ) ) {
                 'mysocialhub',
                 'mysocialhub_display_settings_page'
             );
-
         }
-        add_action( 'admin_menu', 'myplugin_add_sublevel_menu' );
+        add_action( 'admin_menu', 'mysocialhub_add_sublevel_menu' );
