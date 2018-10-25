@@ -12,27 +12,49 @@ License: GPL2
 
 //code starts here
 
-//checks if plugin is called directly and exits. Helps with hacking
+//checks if plugin is called directly and exits. Help deter hacking
 
+if ( ! defined( 'ABSPATH' ) ) {
 
-//function to add the Facebook SDK to WordPress. Function is from developers.facebook.com
-?>
-function fb_sdk(){
+    exit;
 
-    $version = '2.9';
-    $appid='';
-
-    if ($version) $opts = '&version=v' . $version;
-    if ($appid) $opts .= 'appId=' . $appid;
-    <div id="fb-root"></div>
-    <script>(function (d, s, id){
-        var js, fjs = d.getElementsByTagNames(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1<?php echo $opts; ?>";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', facebook-jssdk'));
-    </script>
 }
-<?php
-add_action('wp_head', 'fb_sdk');
+
+//My Social Hub Plugin options found under the settings menu in the admin panel
+
+    // display My Social Hub settings page
+        function mysocialhub_display_settings_page() {
+
+            // checks if current user in WP is allowed to make changes
+            if ( ! current_user_can( 'manage_options' ) ) return;
+
+            ?>
+
+            <div class="wrap">
+                <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+                <form action="options.php" method="post">
+                    <?php
+                    // WP function shows the options
+                    settings_fields( 'mysocialhub_options' );
+                    // WP function showing the options sections
+                    do_settings_sections( 'mysocialhub' );
+                    // submit button
+                    submit_button();
+                    ?>
+                </form>
+            </div>
+            <?php
+        }
+
+        //Adds to the settings menu
+            add_submenu_page(
+                'options-general.php',
+                'MySocialHub Settings',
+                'MySocialHub',
+                'manage_options',
+                'mysocialhub',
+                'mysocialhub_display_settings_page'
+            );
+
+        }
+        add_action( 'admin_menu', 'myplugin_add_sublevel_menu' );
